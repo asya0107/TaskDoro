@@ -19,8 +19,14 @@ function App() {
   const taskCollectionRef = collection(db, "tasks");
 
   //create a new task with a specific time alotted
-  const createTask = async () => {
-    await addDoc(taskCollectionRef, {title: newTitle, timeAlotted: timeAlotted});
+  const createTask = async (submitEvent) => {
+    submitEvent.preventDefault();
+    console.log("it got here")
+    await addDoc(taskCollectionRef, {
+      title: newTitle, 
+      timeAlotted: timeAlotted,
+      completed: false
+    });
   };
 
   //get the all the tasks available when page renders
@@ -46,6 +52,35 @@ function App() {
     await deleteDoc(taskDoc)
   }
 
+  // delete all tasks
+  
+    
+    const deleteAllTasks = query(collection(db, ‘tasks’), where(‘completed’, “==”, true))
+    const querySnapshot = await getDocs(deleteAllTasks)
+    try{
+    await Promise.all(querySnapshot.forEach((aDoc) => {
+    deleteDoc(doc(db, ‘tasks’, aDoc.id))
+    }))
+    }catch(err){
+    console.log(err.message)
+    }
+  
+
+  const timeAlottedLength = () => {
+    if (timeAlotted === 0 ) {
+      return "invalid-input";
+    } else {
+      return "";
+    }
+  };
+
+  const titleLength = () => {
+    if (newTitle === 0 ) {
+      return "invalid-input";
+    } else {
+      return "";
+    }
+  };
 
 
 
@@ -54,26 +89,39 @@ function App() {
   return (
     <div className="App">
       <section id= 'new-task-form'>
-        <h2>Create Task</h2>
-        <input
-          placeholder= "New Task"
-          value={newTitle}
-          onChange={(event) => {
-            setNewTitle(event.target.value)
-          }}
-          />
-          <input 
-          type="number"
-          placeholder= "Time Alotted"
-          value={timeAlotted}
-          onChange={(event) => {
-            setTimeAlotted(event.target.value)
-          }}
-          />
-          <button onclick={createTask}>Submit</button>
+          <h2>Create Task</h2>
+        <form autoComplete="off" onSubmit={createTask} className="createTask">
+            <input
+              placeholder= "Task"
+              value={newTitle}
+              className={titleLength()}
+              onChange={(event) => {
+                setNewTitle(event.target.value)
+              }}
+              />
+              <input 
+              type="number"
+              placeholder= "Time Alotted"
+              value={timeAlotted}
+              className={timeAlottedLength()}
+              onChange={(event) => {
+                setTimeAlotted(event.target.value)
+              }}
+              />
+              <input
+        type="submit"
+        value="Submit"
+        disabled={
+          newTitle === 0 ||
+          timeAlotted === 0 
+          
+        }
+        className="submit-button"
+      ></input>
+       </form>
       </section>
       <section id='render-tasks'>
-      <h2 id='task-title'>Tasks</h2>
+      <h2 id='task-title'>Tasks <button onclick={deleteAllTasks}>Delete All</button> </h2>
       {tasks.map((task) => {
         return (
           <section >
