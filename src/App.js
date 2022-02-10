@@ -55,32 +55,18 @@ function App() {
   // delete all tasks
   
     
-    const deleteAllTasks = query(collection(db, ‘tasks’), where(‘completed’, “==”, true))
+    const deleteAllTasks = query(collection(db, `tasks`), where(`completed`, `==`, true))
     const querySnapshot = await getDocs(deleteAllTasks)
     try{
     await Promise.all(querySnapshot.forEach((aDoc) => {
-    deleteDoc(doc(db, ‘tasks’, aDoc.id))
+    deleteDoc(doc(db, `tasks`, aDoc.id))
     }))
     }catch(err){
     console.log(err.message)
     }
   
 
-  const timeAlottedLength = () => {
-    if (timeAlotted === 0 ) {
-      return "invalid-input";
-    } else {
-      return "";
-    }
-  };
-
-  const titleLength = () => {
-    if (newTitle === 0 ) {
-      return "invalid-input";
-    } else {
-      return "";
-    }
-  };
+  
 
 
 
@@ -94,7 +80,6 @@ function App() {
             <input
               placeholder= "Task"
               value={newTitle}
-              className={titleLength()}
               onChange={(event) => {
                 setNewTitle(event.target.value)
               }}
@@ -103,7 +88,6 @@ function App() {
               type="number"
               placeholder= "Time Alotted"
               value={timeAlotted}
-              className={timeAlottedLength()}
               onChange={(event) => {
                 setTimeAlotted(event.target.value)
               }}
@@ -122,6 +106,7 @@ function App() {
       </section>
       <section id='render-tasks'>
       <h2 id='task-title'>Tasks <button onclick={deleteAllTasks}>Delete All</button> </h2>
+      
       {tasks.map((task) => {
         return (
           <section >
@@ -138,7 +123,6 @@ function App() {
                 deleteTask(task.id);
               }}
               >
-              {" "}
               Delete
             </button>
             </section>
