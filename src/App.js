@@ -30,21 +30,21 @@ function App() {
   };
 
   //get the all the tasks available when page renders
-  useEffect(() => {
-    const getTasks = async() => {
-      const data = await getDocs(taskCollectionRef);
-      setTasks(data.docs.map((doc)=>({...doc.data(), id: doc.id})),[]);
-    };
-    getTasks();
+  // useEffect(() => {
+  //   const getTasks = async() => {
+  //     const data = await getDocs(taskCollectionRef);
+  //     setTasks(data.docs.map((doc)=>({...doc.data(), id: doc.id})),[]);
+  //   };
+  //   getTasks();
     
-  })
+  // })
+  const getTasks = async() => {
+    const data = await getDocs(taskCollectionRef);
+    setTasks(data.docs.map((doc)=>({...doc.data(), id: doc.id})),[]);
+  };
   useEffect(() => {
-    const getTasks = async() => {
-      const data = await getDocs(taskCollectionRef);
-      setTasks(data.docs.map((doc)=>({...doc.data(), id: doc.id})),[]);
-    };
     getTasks();
-  }, [taskCollectionRef]);
+  }, []);
 
   //delete one task
   const deleteTask = async(id) => {
@@ -55,15 +55,15 @@ function App() {
   // delete all tasks
   
     
-    const deleteAllTasks = query(collection(db, ‘tasks’), where(‘completed’, “==”, true))
-    const querySnapshot = await getDocs(deleteAllTasks)
-    try{
-    await Promise.all(querySnapshot.forEach((aDoc) => {
-    deleteDoc(doc(db, ‘tasks’, aDoc.id))
-    }))
-    }catch(err){
-    console.log(err.message)
-    }
+    // const deleteAllTasks = query(collection(db, ‘tasks’), where(‘completed’, “==”, true))
+    // const querySnapshot = await getDocs(deleteAllTasks)
+    // try{
+    // await Promise.all(querySnapshot.forEach((aDoc) => {
+    // deleteDoc(doc(db, ‘tasks’, aDoc.id))
+    // }))
+    // }catch(err){
+    // console.log(err.message)
+    // }
   
 
   const timeAlottedLength = () => {
@@ -82,7 +82,13 @@ function App() {
     }
   };
 
+//update time alotted and task
+  const markAsCompleted= async(id,completed) =>{
+    const taskDoc = doc(db,'tasks',id)
+    const checkOff = {completed:true}
+    await updateDoc(taskDoc,checkOff)
 
+  }
 
 
 
@@ -121,7 +127,7 @@ function App() {
        </form>
       </section>
       <section id='render-tasks'>
-      <h2 id='task-title'>Tasks <button onclick={deleteAllTasks}>Delete All</button> </h2>
+      <h2 id='task-title'>Tasks  </h2>
       {tasks.map((task) => {
         return (
           <section >
@@ -131,8 +137,7 @@ function App() {
               <p id='task'>{task.title} </p>
               <p id='timeAlotted'>({task.timeAlotted} minutes)</p>
             </div>
-            
-            
+            <button onClick={()=>{markAsCompleted(task.id,task.completed)}}>Completed</button>
             <button 
               onClick={() => {
                 deleteTask(task.id);
