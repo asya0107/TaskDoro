@@ -84,9 +84,14 @@ function App() {
 
 //update time alotted and task
   const markAsCompleted= async(id,completed) =>{
-    const taskDoc = doc(db,'tasks',id)
-    const checkOff = {completed:true}
-    await updateDoc(taskDoc,checkOff)
+    // const taskDoc = doc(db,'tasks',id)
+    // const checkOff = {completed:true}
+    // await updateDoc(taskDoc,checkOff)
+
+    const itemChecked=this.state.itemChecked
+    itemCheck[id]=e.target.checked;
+    this.setState({itemChecked:itemChecked})
+
 
   }
 
@@ -137,7 +142,7 @@ function App() {
               <p id='task'>{task.title} </p>
               <p id='timeAlotted'>({task.timeAlotted} minutes)</p>
             </div>
-            <button onClick={()=>{markAsCompleted(task.id,task.completed)}}>Completed</button>
+            <input type="checkbox" onClick={()=>{markAsCompleted(task.id,task.completed)}}></input>
             <button 
               onClick={() => {
                 deleteTask(task.id);
