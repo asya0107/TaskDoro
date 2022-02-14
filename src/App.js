@@ -17,6 +17,8 @@ function App() {
   const [timeAlotted, setTimeAlotted] = useState(0);
   const [tasks,setTasks] = useState([]);
   const taskCollectionRef = collection(db, "tasks");
+  const [toggle, setToggle] = React.useState(true);
+  
 
   //create a new task with a specific time alotted
   const createTask = async (submitEvent) => {
@@ -28,6 +30,7 @@ function App() {
       completed: false
     });
   };
+
 
   //get the all the tasks available when page renders
   // useEffect(() => {
@@ -83,17 +86,37 @@ function App() {
   };
 
 //update time alotted and task
-  const markAsCompleted= async(id,completed) =>{
-    // const taskDoc = doc(db,'tasks',id)
-    // const checkOff = {completed:true}
-    // await updateDoc(taskDoc,checkOff)
+  const [checked, setChecked] = useState(task.completed);
+  const markAsCompleted= async(id,completed,e) =>{
+    const taskDocRef = doc(db,'tasks',id)
+    await updateDoc(taskDocRef, {
+      completed: checked
+    })
+    
 
-    const itemChecked=this.state.itemChecked
-    itemCheck[id]=e.target.checked;
-    this.setState({itemChecked:itemChecked})
+    
 
 
   }
+  const handleTitleUpdate = async(e, id)=>{
+    e.preventDefault()
+    const taskDocRef = doc(db,'tasks',id)
+    
+    await updateDoc(taskDocRef, {
+      newTitle: newTitle,
+      timeAlotted: timeAlotted
+    }
+    )}
+  function toggleInput() {
+    setToggle(false);
+  }
+  const handleKeyPress = e => {
+    //it triggers by pressing the enter key
+  if (e.keyCode === 13) {
+    this.btn.click();
+  }
+};
+
 
 
 
@@ -139,10 +162,22 @@ function App() {
             
             {" "}
             <div>
-              <p id='task'>{task.title} </p>
-              <p id='timeAlotted'>({task.timeAlotted} minutes)</p>
+            {toggle ? (
+                <p id='task' onDoubleClick={toggleInput}>{task.title} </p>
+              ) : (
+                <input type="text" value={task.newTitle} onChange={handleTitleUpdate} onKeyDown={handleKeyPress}/>
+              //i need to finish the  double click to edit functionality
+                )
+              }
+              
+              
+              <p id='timeAlotted' onDoubleClick={handleTitleUpdate}>({task.timeAlotted} minutes)</p>
             </div>
-            <input type="checkbox" onClick={()=>{markAsCompleted(task.id,task.completed)}}></input>
+            <input className='checkbox'
+              type="checkbox"
+              checked={checked} 
+              onClick={()=>{markAsCompleted(task.id,task.completed)}}
+              id={`checkbox-${task.id}`} ></input>
             <button 
               onClick={() => {
                 deleteTask(task.id);
