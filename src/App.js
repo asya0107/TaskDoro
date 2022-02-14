@@ -18,6 +18,8 @@ function App() {
   const [tasks,setTasks] = useState([]);
   const taskCollectionRef = collection(db, "tasks");
   const [toggle, setToggle] = React.useState(true);
+  const [completed,setCompleted] = useState('')
+  const [checked, setChecked] = useState(completed);
   
 
   //create a new task with a specific time alotted
@@ -86,8 +88,8 @@ function App() {
   };
 
 //update time alotted and task
-  const [checked, setChecked] = useState(task.completed);
-  const markAsCompleted= async(id,completed,e) =>{
+  
+  const markAsCompleted= async(id) =>{
     const taskDocRef = doc(db,'tasks',id)
     await updateDoc(taskDocRef, {
       completed: checked
@@ -176,8 +178,12 @@ function App() {
             <input className='checkbox'
               type="checkbox"
               checked={checked} 
-              onClick={()=>{markAsCompleted(task.id,task.completed)}}
-              id={`checkbox-${task.id}`} ></input>
+              onChange={markAsCompleted}
+              id={`checkbox-${task.id}`} />
+              <label 
+            htmlFor={`checkbox-${task.id}`} 
+            className="checkbox-custom-label" 
+            onClick={() => setChecked(!checked)} ></label>
             <button 
               onClick={() => {
                 deleteTask(task.id);
