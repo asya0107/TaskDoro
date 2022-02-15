@@ -3,7 +3,7 @@ import {useState} from 'react'
 import TaskItem from './taskItem.js'
 import EditTask from './makeTask'
 import { doc, updateDoc, deleteDoc} from "firebase/firestore";
-import {db} from './firebase-config'
+import {db} from '../firebase-config'
 
 function Task({id, title, description, completed}) {
 

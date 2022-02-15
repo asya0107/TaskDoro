@@ -1,6 +1,6 @@
 import Modal from "./modal"
 import {useState} from 'react'
-import 'stylesheets/makeTask.css'
+import '../stylesheets/makeTask.css'
 
 import {db} from '../firebase-config'
 import {collection, addDoc, Timestamp} from 'firebase/firestore'
