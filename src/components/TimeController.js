@@ -53,7 +53,7 @@ function TimeController(props) {
           }
       }
   };
-  console.log('props.type:', props.type)
+  
   return (
       <div className="TimeController">
           <Button
@@ -67,11 +67,11 @@ function TimeController(props) {
               <span id={props.labelId} className="label">
                   {props.label}
               </span>
-              {props.type &&
-              (<span id={props.lengthId} className="time">
+              
+              <span id={props.lengthId} className="time">
                   {timer[props.type] / 60}
-              </span>)
-              }
+              </span>
+              
           </div>
           <Button
               actionClick={() => changeTimer('increment')}
