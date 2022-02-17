@@ -1,20 +1,27 @@
 import './App.css';
-import Home from './components/taskManager.js'
-import * as timeFunctions from './components/TimeContext';
 
-import Pomodoro from './components/Pomodoro'
+import Home from './components/taskManager.js'
+// import * as timeFunctions from './components/TimeContext';
+import * as TesterPomo from './components/TesterPomo'
+
+// import Pomodoro from './components/Pomodoro'
 
 function App() {
 
   return (
     
-    <timeFunctions.TimeProvider>
+    // 
     <div className="App">
-        <Pomodoro />
-        <Home/>
+        <TesterPomo.TimeProvider>
+			<div className="App">
+				<TesterPomo.Pomodoro />
+			</div>
+		</TesterPomo.TimeProvider>
+    <Home id='task'/>
     </div>
-</timeFunctions.TimeProvider>
+
   );
 }
+
 
 export default App;

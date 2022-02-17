@@ -13,17 +13,18 @@ body {
   height: 100vh;
   margin: 0;
   padding: 0;
-  background-image: linear-gradient(-137deg, #adbcc4 0%, #696d89 100%);
+  color:white;
   font-family: "Raleway", sans-serif;
   font-size: 1.5rem;
-  color: #dcdeed;
+  
+  background-color: #ffabd9;
 }
 
 .App {
   width: 350px;
   height: 600px;
   border-radius: 6px;
-  background: #34394c;
+  background: #46FEC6;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -108,7 +109,7 @@ body {
 }
 
 .completed {
-  background-color: #f28458;
+  background-color: #fff47c;
 }
 
 .TimeController {
@@ -127,7 +128,7 @@ body {
 
 .label {
   font-size: 0.7rem;
-  color: #f28458;
+  color: #ffabd9;
   font-size: 1.125;
 }
 
@@ -164,7 +165,7 @@ body {
 }
 
 .Button {
-  background: #f2f4f1;
+  background: #fff47c;
   text-align: center;
   width: 3rem;
   height: 3rem;
@@ -181,4 +182,19 @@ body {
 }
 .Button:hover {
   cursor: pointer;
+}
+/* task manager section */
+p {
+  font-size: 17px;
+  display:inline-block;
+  margin-right:10px;
+}
+.taskManager__tasks {
+  display: flex;
+  display:inline-block;
+  position: absolute;
+  float: right;
+}
+.task__body{
+  padding:0%
 }

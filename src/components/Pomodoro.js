@@ -69,7 +69,7 @@ function Pomodoro() {
    return (
        <div className="pomodoro">
            <Title title={timer.name} />
-           <Timer  time={timer.time} mode={timer.mode} />
+           <Timer time={timer.time} mode={timer.mode} />
            
            <Progress progress={timer.progress} />
 

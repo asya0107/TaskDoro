@@ -1,4 +1,4 @@
-import '../stylesheets/taskManager.css'
+
 import Task from './Task'
 import {useState, useEffect} from 'react'
 import {collection, query, orderBy, onSnapshot} from "firebase/firestore"
@@ -23,7 +23,7 @@ function TaskManager() {
 
   return (
     <div className='taskManager'>
-      <header>Task Manager</header>
+      
       <div className='taskManager__container'>
         <button 
           onClick={() => setOpenAddModal(true)}>

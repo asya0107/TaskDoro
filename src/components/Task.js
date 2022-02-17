@@ -38,7 +38,7 @@ function Task({id, title, description, completed}) {
 
   return (
     <div className={`task ${checked && 'task--borderColor'}`}>
-      <div>
+      
         <input 
           id={`checkbox-${id}`} 
           className='checkbox-custom'
@@ -50,7 +50,7 @@ function Task({id, title, description, completed}) {
           htmlFor={`checkbox-${id}`} 
           className="checkbox-custom-label" 
           onClick={() => setChecked(!checked)} ></label>
-      </div>
+      
       <div className='task__body'>
         <h2>{title}</h2>
         <p>{description}</p>
