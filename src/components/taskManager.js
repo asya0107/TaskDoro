@@ -39,7 +39,7 @@ function TaskManager() {
               key={task.id}
               completed={task.data.completed}
               title={task.data.title} 
-              // description={task.data.description}
+              description={task.data.description}
             />
             </li>
           ))}

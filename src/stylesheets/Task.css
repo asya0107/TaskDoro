@@ -41,7 +41,7 @@
   content: '';
   background: inherit;
   border-radius: 5px;
-  border: 2px solid hsl(210, 15%, 70%);
+  border: 2px solid #feea00;
   display: inline-block;
   vertical-align: middle;
   width: 20px; 
@@ -82,46 +82,47 @@
 }
 
 .task__buttons > button {
-  background-color: hsl(210, 70%, 60%);
+  background-color: inherit;
   padding: 5px 10px;
   font-size: 16px;
   border: none;
   border-radius: 4px;
   color: white;
+  display: inline;
+  position: absolute;
+  bottom: -5px;
+  right:-10px;
+  padding: 0px;
+  
 }
 
-.task__buttons > button:hover {
-  background-color: hsl(210, 70%, 50%);
+ .task__buttons > button:hover {
+  color: #feea00;
 }
 
-.task__buttons > button:active{
-  background-color: hsl(210, 70%, 60%);
-}
 
-.task__deleteNedit button {
-  margin-right: 20px;
-  background-color: transparent;
-  border: none;
-  font-size: 16px;
-  color: hsl(210, 10%, 55%);
-}
 
-.task__editButton:hover {
-  color: hsl(210, 20%, 25%);
-}
 
-.task__editButton:active {
-  color: hsl(210, 10%, 55%);
+.task__deleteButton {
+  
+  display: inline;
+  position: absolute;
+  bottom: -25px;
+  right:-100px;
+  padding: 20px;
+  margin-left: 50px;
+  margin-right: 55px;
 }
-
-.task__deleteNedit .task__deleteButton {
-  color: hsl(0, 80%, 80%);
+.task__editButton{
+  
+  display: inline;
+  position: absolute;
+  bottom: -45px;
+  right: -100px;
+  padding: 20px;
+  margin-left: 75px;
+  margin-right: 120px;
 }
-
-.task__deleteButton:hover {
-  color: hsl(0, 70%, 70%);
-}
-
-.task__deleteButton:active {
-  color: hsl(0, 80%, 80%);
+.task__body p{
+  display: none;
 }

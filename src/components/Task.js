@@ -54,21 +54,21 @@ function Task({id, title, description, completed}) {
       <div className='task__body'>
         <h2>{title}</h2>
         <p>{description}</p>
+      </div>
         <div className='task__buttons'>
-          <div className='task__deleteNedit'>
+          
             <button 
               className='task__editButton' 
               onClick={() => setOpen({...open, edit : true})}>
               Edit
             </button>
             <button className='task__deleteButton' onClick={handleDelete}>Delete</button>
-          </div>
+          
           <button 
             onClick={() => setOpen({...open, view: true})}>
             View
           </button>
         </div>
-      </div>
 
       {open.view &&
         <TaskItem 

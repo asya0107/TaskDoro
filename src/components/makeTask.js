@@ -34,10 +34,10 @@ function AddTask({onClose, open}) {
           name='title' 
           onChange={(e) => setTitle(e.target.value.toUpperCase())} 
           value={title}
-          placeholder='Enter title'/>
+          placeholder='Enter Title'/>
         <textarea 
           onChange={(e) => setDescription(e.target.value)}
-          placeholder='Enter task decription'
+          placeholder='Enter task decription and amount of pomodoro sessions'
           value={description}></textarea>
         <button type='submit'>Done</button>
       </form> 
