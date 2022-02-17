@@ -4,6 +4,7 @@ import {useState, useEffect} from 'react'
 import {collection, query, orderBy, onSnapshot} from "firebase/firestore"
 import {db} from '../firebase-config'
 import AddTask from './makeTask'
+import '../stylesheets/taskManager.css'
 
 function TaskManager() {
 
@@ -32,13 +33,15 @@ function TaskManager() {
         <div className='taskManager__tasks'>
 
           {tasks.map((task) => (
+            <li>
             <Task
               id={task.id}
               key={task.id}
               completed={task.data.completed}
               title={task.data.title} 
-              description={task.data.description}
+              // description={task.data.description}
             />
+            </li>
           ))}
 
         </div>

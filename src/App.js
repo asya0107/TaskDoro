@@ -13,9 +13,9 @@ function App() {
     // 
     <div className="App">
         <TesterPomo.TimeProvider>
-			<div className="App">
+			
 				<TesterPomo.Pomodoro />
-			</div>
+		
 		</TesterPomo.TimeProvider>
     <Home id='task'/>
     </div>

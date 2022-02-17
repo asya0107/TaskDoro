@@ -44,8 +44,7 @@ body {
   }
 }
 .pomodoro {
-  height: 100%;
-  width: 100%;
+  
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -184,17 +183,7 @@ body {
   cursor: pointer;
 }
 /* task manager section */
-p {
-  font-size: 17px;
-  display:inline-block;
-  margin-right:10px;
-}
-.taskManager__tasks {
-  display: flex;
-  display:inline-block;
-  position: absolute;
-  float: right;
-}
-.task__body{
-  padding:0%
-}
+
+
+
+
