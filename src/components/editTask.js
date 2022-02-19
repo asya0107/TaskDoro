@@ -15,8 +15,8 @@ function EditTask({open, onClose, toEditTitle, toEditDescription, id}) {
     const taskDocRef = doc(db, 'tasks', id)
     try{
       await updateDoc(taskDocRef, {
-        title: title,
-        description: description
+        title: 'title',
+        description: 'description'
       })
       onClose()
     } catch (err) {
